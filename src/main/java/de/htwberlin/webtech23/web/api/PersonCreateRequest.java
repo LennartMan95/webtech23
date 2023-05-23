@@ -1,33 +1,15 @@
-package de.htwberlin.webtech23.persistence;
+package de.htwberlin.webtech23.web.api;
 
+public class PersonCreateRequest {
 
-import jakarta.persistence.*;
-
-@Entity(name = "persons")
-public class PersonEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long id;
-
-    @Column(name = "first_name", nullable = false)
     private String firstName;
-
-    @Column(name = "last_name", nullable = false)
     private String lastName;
-
-    @Column(name = "is_vaccinated")
     private boolean vaccinated;
 
-    public PersonEntity(String firstName, String lastName, boolean vaccinated) {
+    public PersonCreateRequest(String firstName, String lastName, boolean vaccinated) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.vaccinated = vaccinated;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getFirstName() {
@@ -54,5 +36,5 @@ public class PersonEntity {
         this.vaccinated = vaccinated;
     }
 
-    protected PersonEntity() {}
+
 }
