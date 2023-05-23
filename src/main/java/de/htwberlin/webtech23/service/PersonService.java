@@ -21,7 +21,7 @@ public class PersonService {
     public List<Person> findAll(){
         List<PersonEntity> persons = personRepository.findAll();
         return persons.stream()
-                .map(personEntity -> transformEntity(personEntity))
+                .map(this::transformEntity)
                 .collect(Collectors.toList());
     }
 
