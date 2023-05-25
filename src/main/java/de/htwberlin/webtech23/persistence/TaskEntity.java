@@ -13,7 +13,6 @@ public class TaskEntity {
 
     @Column(name = "task_Name", nullable = false)
     private String taskName;
-
     @Column(name = "is_taskDone")
     private boolean taskDone = false;
 
