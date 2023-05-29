@@ -3,7 +3,7 @@ package de.htwberlin.webtech23.persistence;
 
 import jakarta.persistence.*;
 
-@Entity(name = "persons")
+@Entity(name = "tasks")
 public class TaskEntity {
 
     @Id
@@ -11,14 +11,17 @@ public class TaskEntity {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "task_Name", nullable = false)
+    @Column(name = "task_name", nullable = false)
     private String taskName;
-    @Column(name = "is_taskDone")
+
+    @Column(name = "is_task_done")
     private boolean taskDone = false;
 
     public TaskEntity(String taskName) {
         this.taskName = taskName;
     }
+
+    protected TaskEntity() {}
 
     public long getId() {
         return id;
@@ -40,5 +43,5 @@ public class TaskEntity {
         this.taskDone = taskDone;
     }
 
-    protected TaskEntity() {}
+
 }

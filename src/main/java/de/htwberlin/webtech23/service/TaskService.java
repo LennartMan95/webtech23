@@ -63,8 +63,7 @@ public class TaskService {
     private Task transformEntity(TaskEntity taskEntity){
         return new Task(
                 taskEntity.getId(),
-                taskEntity.getTaskName(),
-                taskEntity.isTaskDone()
+                taskEntity.getTaskName()
         );
     }
 

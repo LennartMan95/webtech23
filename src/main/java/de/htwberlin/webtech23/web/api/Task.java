@@ -6,10 +6,9 @@ public class Task {
     private String taskName;
     private boolean taskDone = false;
 
-    public Task(long id, String taskName, boolean taskDone) {
+    public Task(long id, String taskName) {
         this.id = id;
         this.taskName = taskName;
-
     }
 
     public long getId() {
