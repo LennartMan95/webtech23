@@ -10,6 +10,9 @@ public class TaskManipulationRequest {
 
     }
 
+    public TaskManipulationRequest() {
+    }
+
     public String getTaskName() {
         return taskName;
     }
