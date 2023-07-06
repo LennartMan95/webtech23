@@ -14,7 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
                 .allowedMethods("*")
-                .allowedOrigins("http://localhost:8081/", "https://spring-boot-webtechproject23.herokuapp.com/");
+                .allowedOrigins("http://localhost:8081/", "https://task-frontend23.herokuapp.com/");
 
     }
 }

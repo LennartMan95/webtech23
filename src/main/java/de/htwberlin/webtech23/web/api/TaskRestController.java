@@ -32,9 +32,14 @@ public class TaskRestController {
 
     @PostMapping(path = "/api/v1/tasks")
     public ResponseEntity<Void> createTask(@RequestBody TaskManipulationRequest request) throws URISyntaxException {
-        var task = taskService.create(request);
-        URI uri = new URI("/api/v1/tasks/" + task.getId());
-        return ResponseEntity.created(uri).build();
+        var valid = validate(request);
+        if (valid){
+            var task = taskService.create(request);
+            URI uri = new URI("/api/v1/tasks/" + task.getId());
+            return ResponseEntity.created(uri).build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping(path = "/api/v1/tasks/{id}")
@@ -43,12 +48,20 @@ public class TaskRestController {
         return  task  != null? ResponseEntity.ok(task) : ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping(path = "/api/v1/persons{id}")
+    @DeleteMapping(path = "/api/v1/tasks/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         boolean successful = taskService.deleteById(id);
         return successful? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 
+    private boolean validate(TaskManipulationRequest request){
+        return request.getTaskName() != null
+                && !request.getTaskName().isBlank()
+                && (request.getTaskName().length()>1)
+                && request.getTaskDescription() != null
+                && !request.getTaskDescription().isBlank()
+                && (request.getTaskDescription().length()>9);
 
+    }
 
 }

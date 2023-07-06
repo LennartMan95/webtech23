@@ -37,6 +37,7 @@ public class TaskService {
         }
         var taskEntity = taskEntityOptional.get();
         taskEntity.setTaskName(request.getTaskName());
+        taskEntity.setTaskDescription(request.getTaskDescription());
         taskEntity.setTaskDone(request.isTaskDone());
         taskEntity = taskRepository.save(taskEntity);
 
@@ -46,13 +47,13 @@ public class TaskService {
 
 
     public Task create(TaskManipulationRequest request) {
-        var taskEntity = new TaskEntity(request.getTaskName());
+        var taskEntity = new TaskEntity(request.getTaskName(), request.getTaskDescription());
         taskEntity = taskRepository.save(taskEntity);
         return transformEntity(taskEntity);
     }
 
     public boolean deleteById(Long id) {
-        if (taskRepository.existsById(id)){
+        if (!taskRepository.existsById(id)){
             return false;
         }
 
@@ -63,7 +64,8 @@ public class TaskService {
     private Task transformEntity(TaskEntity taskEntity){
         return new Task(
                 taskEntity.getId(),
-                taskEntity.getTaskName()
+                taskEntity.getTaskName(),
+                taskEntity.getTaskDescription()
         );
     }
 

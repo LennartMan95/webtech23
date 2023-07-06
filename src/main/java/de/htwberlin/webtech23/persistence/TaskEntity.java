@@ -14,11 +14,15 @@ public class TaskEntity {
     @Column(name = "task_name", nullable = false)
     private String taskName;
 
+    @Column(name = "task_description", nullable = false)
+    private String taskDescription;
+
     @Column(name = "is_task_done")
     private boolean taskDone = false;
 
-    public TaskEntity(String taskName) {
+    public TaskEntity(String taskName, String taskDescription) {
         this.taskName = taskName;
+        this.taskDescription = taskDescription;
     }
 
     protected TaskEntity() {}
@@ -43,5 +47,7 @@ public class TaskEntity {
         this.taskDone = taskDone;
     }
 
+    public String getTaskDescription() { return taskDescription; }
 
+    public void setTaskDescription(String taskDescription) { this.taskDescription = taskDescription; }
 }
